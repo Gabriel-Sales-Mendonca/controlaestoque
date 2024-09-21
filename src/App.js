@@ -1,8 +1,13 @@
+import Menu from './components/Menu'
+
+import GlobalStyles from './styles/GlobalStyles';
+
 function App() {
   return (
-    <div>
-      <h1>Hello world!</h1>
-    </div>
+    <>
+      <Menu />
+      <GlobalStyles />
+    </>
   );
 }
 
