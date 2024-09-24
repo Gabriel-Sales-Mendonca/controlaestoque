@@ -32,5 +32,10 @@ export const Nav = styled.nav`
         font-size: 20px;
         text-align: center;
         padding: 10px 0;
+        cursor: pointer;
+    }
+
+    li:hover {
+        background-color: rgba(30,180,255);
     }
 `

@@ -11,4 +11,18 @@ export default createGlobalStyle`
     html, body, #root {
         height: 100%;
     }
+
+    button {
+        font-size: 15px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #1E90FF;
+        color: white;
+        border: none;
+    }
+
+    button:hover {
+        background-color: rgba(30,170,255);
+    }
 `
