@@ -5,10 +5,6 @@ import styled from 'styled-components'
 export const Nav = styled.nav`
     background-color: #1E90FF;
     color: white;
-    position: fixed;
-    left: 0;
-    width: 250px;
-    height: 100%;
 
     .title {
         display: flex;

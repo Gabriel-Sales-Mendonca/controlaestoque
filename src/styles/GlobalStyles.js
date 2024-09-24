@@ -12,6 +12,22 @@ export default createGlobalStyle`
         height: 100%;
     }
 
+    .container {
+        display: flex;
+        height: 93vh;
+    }
+
+    .menu {
+        left: 0;
+        width: 250px;
+        height: 100%;
+    }
+
+    .content {
+        flex-grow: 1;
+        padding: 20px;
+    }
+
     button {
         font-size: 15px;
         padding: 5px 10px;

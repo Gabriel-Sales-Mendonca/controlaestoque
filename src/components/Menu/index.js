@@ -4,7 +4,7 @@ import {Nav} from './styled'
 
 export default function Menu () {
     return (
-        <Nav>
+        <Nav className='menu'>
             <div className='title'>
                 <h1>Menu</h1>
             </div>
