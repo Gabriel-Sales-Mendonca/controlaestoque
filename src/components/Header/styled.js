@@ -5,6 +5,7 @@ export const Nav = styled.nav`
     align-items: center;
     justify-content: center;
 
+    width: 100%;
     height: 7vh;
     background-color: #4F4F4F;
     color: white;
@@ -15,5 +16,9 @@ export const Nav = styled.nav`
         align-items: center;
         justify-content: space-between;
         gap: 50px;
+    }
+
+    a {
+        color: white;
     }
 `

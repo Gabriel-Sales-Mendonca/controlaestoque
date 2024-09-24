@@ -1,10 +1,10 @@
-import Menu from '../../components/Menu'
+import { ErrorStyled } from './styled'
 
 export default function Error() {
     return (
-        <>
-            <Menu />
-            <h2>Página de erro</h2>
-        </>
+        <ErrorStyled>
+            <h2>Oops!</h2>
+            <p>Página não encontrada</p>
+        </ErrorStyled>
     )
 }

@@ -6,7 +6,9 @@ export default function Header() {
     return (
         <Nav>
             <div>
-                <h1>Controle de Estoque</h1>
+                <h1>
+                    <a href='/'>Controle de Estoque</a>
+                </h1>
                 <button>Fazer Login</button>
             </div>
         </Nav>

@@ -41,4 +41,8 @@ export default createGlobalStyle`
     button:hover {
         background-color: rgba(30,170,255);
     }
+
+    a {
+        text-decoration: none;
+    }
 `
