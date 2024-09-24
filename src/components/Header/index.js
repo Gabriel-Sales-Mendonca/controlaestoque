@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Nav } from './styled'
 
@@ -7,7 +8,7 @@ export default function Header() {
         <Nav>
             <div>
                 <h1>
-                    <a href='/'>Controle de Estoque</a>
+                    <Link to={'/'}>Controle de Estoque</Link>
                 </h1>
                 <button>Fazer Login</button>
             </div>

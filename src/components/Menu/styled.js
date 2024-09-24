@@ -32,4 +32,8 @@ export const Nav = styled.nav`
     li:hover {
         background-color: rgba(30,180,255);
     }
+
+    a {
+        color: white;
+    }
 `

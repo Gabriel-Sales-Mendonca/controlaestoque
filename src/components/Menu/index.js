@@ -5,7 +5,7 @@ import {Nav} from './styled'
 
 export default function Menu () {
     return (
-        <>
+        <div className='container'>
             <Nav className='menu'>
                 <div className='title'>
                     <h1>Menu</h1>
@@ -13,7 +13,7 @@ export default function Menu () {
 
                 <ul>
                     <li>
-                        <Link to={`products`}>Produtos</Link>
+                        <Link to={`/`}>Produtos</Link>
                     </li>
                     <li>
                         <Link to={`categories`}>Categorias</Link>
@@ -26,6 +26,6 @@ export default function Menu () {
             <div className='content'>
                 <Outlet />
             </div>
-        </>
+        </div>
     )
 }
