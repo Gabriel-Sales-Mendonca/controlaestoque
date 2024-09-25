@@ -7,9 +7,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <div>
-        <RouterProvider router={router} />
-      </div>
+      <RouterProvider router={router} />
     </>
   );
 }

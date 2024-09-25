@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import Menu from '../components/Menu'
 import Header from '../components/Header'
+import Menu from '../components/Menu'
 import Error from '../pages/Error'
+import Login from '../pages/Login'
 import Products from '../pages/Products'
 import Categories from '../pages/Categories'
 
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
                 element: <Categories />
             }
         ]
+    },
+
+    {
+        path: 'login',
+        element: <Login />
     }
 ])
 

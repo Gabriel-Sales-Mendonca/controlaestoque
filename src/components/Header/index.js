@@ -10,7 +10,15 @@ export default function Header() {
                 <h1>
                     <Link to={'/'}>Controle de Estoque</Link>
                 </h1>
-                <button>Fazer Login</button>
+                <div>
+                    <Link to={'/login'}>
+                        <button>Fazer Login</button>
+                    </Link>
+                    <Link to={'/register'}>
+                        <button>Cadastrar</button>
+                    </Link>
+                </div>
+                
             </div>
         </Nav>
     )
