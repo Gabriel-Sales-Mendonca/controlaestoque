@@ -4,6 +4,7 @@ export default function Register() {
     return (
         <div className='centralizer'>
             <h1>Cadastre-se</h1>
+            <h4>ou experimente a plataforma sem cadastro <a href='/experimental'>aqui</a></h4>
             <Form className='form-container'>
                 <form>
                     <label for="name">Nome:</label>
