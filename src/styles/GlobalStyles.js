@@ -28,6 +28,15 @@ export default createGlobalStyle`
         padding: 20px;
     }
 
+    .centralizer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+    }
+
     button {
         font-size: 15px;
         padding: 5px 10px;
