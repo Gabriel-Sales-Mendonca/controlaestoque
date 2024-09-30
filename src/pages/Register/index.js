@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
+import { isEmail } from 'validator'
 
 import { Form } from './styled'
 
@@ -16,7 +17,16 @@ export default function Register() {
         if(name.length < 3 || name.length > 30) {
             formErrors = true
             toast.error('NOME deve ter entre 2 e 31 caracteres')
-            console.log('NOME deve ter entre 2 e 31 caracteres')
+        }
+
+        if(!isEmail(email)) {
+            formErrors = true
+            toast.error('EMAIL inválido')
+        }
+
+        if(password.length < 5 || password.length > 64) {
+            formErrors = true
+            toast.error('A SENHA deve ter entre 4 e 65 caracteres')
         }
     }
     return (
