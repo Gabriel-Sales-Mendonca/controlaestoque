@@ -63,13 +63,13 @@ export default function Register() {
             <h4>ou experimente a plataforma sem cadastro <a href='/experimental'>aqui</a></h4>
             <Form>
                 <form onSubmit={handleSubmit}>
-                    <label for="name">Nome:</label>
+                    <label htmlFor="name">Nome:</label>
                     <input type="text" id="name" name="name" onChange={(e) => {setName(e.target.value)}}/>
 
-                    <label for="email">Email:</label>
+                    <label htmlFor="email">Email:</label>
                     <input type="email" id="email" name="email" onChange={(e) => {setEmail(e.target.value)}}/>
                     
-                    <label for="password">Senha:</label>
+                    <label htmlFor="password">Senha:</label>
                     <input type="password" id="password" name="password" onChange={(e) => {setPassword(e.target.value)}}/>
 
                     <button type='submit'>Cadastrar</button>
