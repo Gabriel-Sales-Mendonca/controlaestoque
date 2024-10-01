@@ -42,9 +42,17 @@ export default function Register() {
                 password: password
             })
 
-            console.log(user)
+            if(user.data.errors) {
+                user.data.errors.map((error) => {
+                    return toast.error(error)
+                })
+
+                return
+            }
 
             navigate('/')
+
+            toast.success('Cadastro realizado com SUCESSO')
         } catch(e) {
             console.log('Houve um erro ' + e)
         }
