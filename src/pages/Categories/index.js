@@ -4,20 +4,15 @@ import axios from '../../services/axios'
 import { Table } from './styled'
 
 export default function Categories() {
-    const [id, setId] = useState('')
-    //const [name, setName] = useState('')
+    const [categories, setCategories] = useState([])
 
     useEffect(() => {
         async function getData() {
-            const response = await axios.get('/categories',{
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('userToken')}`
-                }
-            })
+            const response = await axios.get('/categories')
 
             console.log(response)
 
-            setId(response.data[0].id)
+            setCategories(response.data)
         }
 
         getData()
@@ -42,18 +37,14 @@ export default function Categories() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>{id}</td>
-                            <td>Exemplo 1</td>
-                            <td>Atualizar</td>
-                            <td>Deletar</td>
-                        </tr>
-                        <tr>
-                            <td>{id}</td>
-                            <td>Exemplo 2</td>
-                            <td>Atualizar</td>
-                            <td>Deletar</td>
-                        </tr>
+                        {categories.map((category, index) => (
+                            <tr key={category.id}>
+                                <td>{category.id}</td>
+                                <td>{category.name}</td>
+                                <td><button>Editar</button></td>
+                                <td><button>Deletar</button></td>
+                            </tr>
+                        ))}
                     </tbody>
                 </Table>
             </div>
