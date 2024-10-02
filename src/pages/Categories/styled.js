@@ -1,7 +1,12 @@
 import { styled } from 'styled-components'
 
+export const Div = styled.div`
+    .createCategory {
+        margin: 30px 0px;
+    }
+`
+
 export const Table = styled.table`
-    margin-top: 30px;
     border-collapse: collapse;
     width: 100%;
 

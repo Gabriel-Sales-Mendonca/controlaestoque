@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import axios from '../../services/axios'
-import { Table } from './styled'
+import { Div, Table } from './styled'
 
 export default function Categories() {
     const [categories, setCategories] = useState([])
@@ -19,11 +19,11 @@ export default function Categories() {
     }, [])
 
     return (
-        <>
+        <Div>
             <h1>Categorias</h1>
 
             <div>
-                <button>Nova Categoria</button>
+                <button className='createCategory'>Nova Categoria</button>
             </div>
 
             <div>
@@ -48,6 +48,6 @@ export default function Categories() {
                     </tbody>
                 </Table>
             </div>
-        </>
+        </Div>
     )
 }
