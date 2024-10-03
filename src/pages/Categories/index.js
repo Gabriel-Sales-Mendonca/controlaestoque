@@ -142,7 +142,7 @@ export default function Categories() {
                                 <td>{category.id}</td>
                                 <td>{category.name}</td>
                                 <td><button>Editar</button></td>
-                                <td><button type='submit' onClick={(e) => hadleDelete(e, category.id)} >Deletar</button></td>
+                                <td><button type='submit' className='button-red' onClick={(e) => hadleDelete(e, category.id)} >Deletar</button></td>
                             </tr>
                         ))}
                     </tbody>
