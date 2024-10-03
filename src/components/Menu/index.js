@@ -12,15 +12,21 @@ export default function Menu () {
                 </div>
 
                 <ul>
-                    <li>
-                        <Link to={`/`}>Produtos</Link>
-                    </li>
-                    <li>
-                        <Link to={`categories`}>Categorias</Link>
-                    </li>
-                    <li>
-                        <Link to={`stock`}>Estoque</Link>
-                    </li>
+                    <Link to={`/`}>
+                        <li>
+                            <span>Produtos</span>
+                        </li>
+                    </Link>
+                    <Link to={`categories`}>
+                        <li>
+                            <span>Categorias</span>
+                        </li>
+                    </Link>
+                    <Link to={`stock`}>
+                        <li>
+                            <span>Estoque</span>
+                        </li>
+                    </Link>
                 </ul>
             </Nav>
             <div className='content'>
