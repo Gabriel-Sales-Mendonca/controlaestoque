@@ -6,8 +6,8 @@ import { Container, Table } from './styled'
 
 export default function Categories() {
     const [categories, setCategories] = useState([])
-
     const [newCategory, setNewCategory] = useState(false)
+    const [updateCategories, setUpdateCategories] = useState(0)
     const [id, setId] = useState(0)
     const [name, setName] = useState('')
 
@@ -19,7 +19,7 @@ export default function Categories() {
         }
 
         getData()
-    }, [])
+    }, [updateCategories])
 
     function addCategory(e) {
         e.preventDefault()
@@ -64,7 +64,7 @@ export default function Categories() {
                 name: name
             })
 
-            console.log(response)
+            setUpdateCategories(prev => prev + 1)
             toast.success(`Categoria ${response.data.name} criada!`)
         } catch(e) {
             console.log('Houve um erro ' + e)
@@ -96,6 +96,7 @@ export default function Categories() {
                 }
             })
 
+            setUpdateCategories(prev => prev + 1)
             toast.success(response.data)
         } catch(e) {
             console.log('Houve um erro ' + e)
