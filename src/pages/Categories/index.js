@@ -15,8 +15,6 @@ export default function Categories() {
         async function getData() {
             const response = await axios.get('/categories')
 
-            console.log(response)
-
             setCategories(response.data)
         }
 
@@ -86,6 +84,24 @@ export default function Categories() {
         }
     }
 
+    async function hadleDelete(e, categoryId) {
+        e.preventDefault()
+
+        try {
+            const response = await axios.request({
+                method: 'delete',
+                url: '/categories',
+                data: {
+                    id: Number(categoryId)
+                }
+            })
+
+            toast.success(response.data)
+        } catch(e) {
+            console.log('Houve um erro ' + e)
+        }
+    }
+
     return (
         <Container>
             <h1>Categorias</h1>
@@ -125,7 +141,7 @@ export default function Categories() {
                                 <td>{category.id}</td>
                                 <td>{category.name}</td>
                                 <td><button>Editar</button></td>
-                                <td><button>Deletar</button></td>
+                                <td><button type='submit' onClick={(e) => hadleDelete(e, category.id)} >Deletar</button></td>
                             </tr>
                         ))}
                     </tbody>
