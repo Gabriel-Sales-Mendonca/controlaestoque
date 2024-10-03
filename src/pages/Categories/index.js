@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
 import axios from '../../services/axios'
-import { Container, Table } from './styled'
+import { Container, FormNewCategory, Table } from './styled'
 
 export default function Categories() {
     const [categories, setCategories] = useState([])
@@ -113,7 +113,7 @@ export default function Categories() {
 
             {newCategory ? (
                 <div>
-                    <form onSubmit={handleSubmit}>
+                    <FormNewCategory onSubmit={handleSubmit}>
                         <label htmlFor='id'>ID: </label>
                         <input type='number' id='id' name='id' onChange={(e) => {setId(e.target.value)}} />
 
@@ -121,8 +121,8 @@ export default function Categories() {
                         <input type='text' id='name' name='name' onChange={(e) => {setName(e.target.value)}} />
 
                         <button type='submit'>Criar</button>
-                        <button onClick={cancelAddCategory}>Cancelar</button>
-                    </form>
+                        <button className='button-red' onClick={cancelAddCategory}>Cancelar</button>
+                    </FormNewCategory>
                 </div>
             ) : null}
 
