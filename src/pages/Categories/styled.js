@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-export const Div = styled.div`
+export const Container = styled.div`
     .createCategory {
         margin: 30px 0px;
     }
