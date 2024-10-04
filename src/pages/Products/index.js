@@ -6,30 +6,31 @@ import { Container, FormNewCategory, Table } from './styled'
 
 
 export default function Products() {
-    const [categories, setCategories] = useState([])
-    const [newCategory, setNewCategory] = useState(false)
-    const [updateCategories, setUpdateCategories] = useState(0)
-    const [id, setId] = useState(0)
+    const [products, setProducts] = useState([])
+    const [newProduct, setNewProduct] = useState(false)
+    const [updateProducts, setUpdateProducts] = useState(0)
     const [name, setName] = useState('')
+    const [categoryId, setCategoryId] = useState(0)
+    const [price, setPrice] = useState(0)
 
     useEffect(() => {
         async function getData() {
-            const response = await axios.get('/categories')
-
-            setCategories(response.data)
+            const response = await axios.get('/products')
+            console.log(response.data)
+            setProducts(response.data)
         }
 
         getData()
-    }, [updateCategories])
+    }, [updateProducts])
 
-    function addCategory(e) {
+    function addProduct(e) {
         e.preventDefault()
-        setNewCategory(true)
+        setNewProduct(true)
     }
 
-    function cancelAddCategory(e) {
+    function cancelAddProduct(e) {
         e.preventDefault()
-        setNewCategory(false)
+        setNewProduct(false)
     }
 
     async function handleSubmit(e) {
@@ -37,19 +38,19 @@ export default function Products() {
 
         let formErrors = false
 
-        if(!id) {
-            formErrors = true
-            toast.error('ID não informado')
-        }
-
-        if(id < 0) {
-            formErrors = true
-            toast.error('ID inválido')
-        }
-
         if(!name) {
             formErrors = true
             toast.error('NOME não informado')
+        }
+
+        if(!categoryId) {
+            formErrors = true
+            toast.error('ID DA CATEGORIA não informado')
+        }
+
+        if(categoryId < 0) {
+            formErrors = true
+            toast.error('ID DA CATEGORIA inválido')
         }
 
         if(name.length < 3 || name.length > 30) {
@@ -57,16 +58,22 @@ export default function Products() {
             toast.error('O NOME deve ter entre 2 e 31 caracteres')
         }
 
+        if(price < 0) {
+            formErrors = true
+            toast.error('PREÇO inválido')
+        }
+
         if(formErrors) return
 
         try {
-            const response = await axios.post('/categories', {
-                id: Number(id),
-                name: name
+            const response = await axios.post('/products', {
+                name: name,
+                categoryId: Number(categoryId),
+                price: Number(price)
             })
 
-            setUpdateCategories(prev => prev + 1)
-            toast.success(`Categoria ${response.data.name} criada!`)
+            setUpdateProducts(prev => prev + 1)
+            toast.success(`Produto ${response.data.name} criado!`)
         } catch(e) {
             console.log('Houve um erro ' + e)
 
@@ -85,19 +92,19 @@ export default function Products() {
         }
     }
 
-    async function hadleDelete(e, categoryId) {
+    async function hadleDelete(e, productId) {
         e.preventDefault()
 
         try {
             const response = await axios.request({
                 method: 'delete',
-                url: '/categories',
+                url: '/products',
                 data: {
-                    id: Number(categoryId)
+                    id: Number(productId)
                 }
             })
 
-            setUpdateCategories(prev => prev + 1)
+            setUpdateProducts(prev => prev + 1)
             toast.success(response.data)
         } catch(e) {
             console.log('Houve um erro ' + e)
@@ -109,23 +116,23 @@ export default function Products() {
             <h1>Produtos</h1>
 
             <div>
-                <button className='createCategory' onClick={addCategory}>Novo Produto</button>
+                <button className='createCategory' onClick={addProduct}>Novo Produto</button>
             </div>
 
-            {newCategory ? (
+            {newProduct ? (
                 <div>
                     <FormNewCategory onSubmit={handleSubmit}>
                         <label htmlFor='name'>NOME: </label>
                         <input type='text' id='name' name='name' onChange={(e) => {setName(e.target.value)}} />
 
                         <label htmlFor='id'>ID DA CATEGORIA: </label>
-                        <input type='number' id='id' name='id' onChange={(e) => {setId(e.target.value)}} />
+                        <input type='number' id='id' name='id' onChange={(e) => {setCategoryId(e.target.value)}} />
 
                         <label htmlFor='id'>PREÇO: </label>
-                        <input type='number' id='id' name='id' onChange={(e) => {setId(e.target.value)}} />
+                        <input type='number' id='id' name='id' onChange={(e) => {setPrice(e.target.value)}} />
 
                         <button type='submit'>Criar</button>
-                        <button className='button-red' onClick={cancelAddCategory}>Cancelar</button>
+                        <button className='button-red' onClick={cancelAddProduct}>Cancelar</button>
                     </FormNewCategory>
                 </div>
             ) : null}
@@ -138,25 +145,19 @@ export default function Products() {
                             <th>NOME</th>
                             <th>ID DA CATEGORIA</th>
                             <th>PREÇO</th>
-                            <th>VALOR TOTAL</th>
-                            <th>QUANTIDADE</th>
-                            <th>ULTIMA ATUALIZAÇÃO</th>
                             <th>ATUALIZAR</th>
                             <th>DELETAR</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {categories.map((category, index) => (
-                            <tr key={category.id}>
-                                <td>{category.id}</td>
-                                <td>{category.name}</td>
-                                <td>{category.name}</td>
-                                <td>{category.name}</td>
-                                <td>{category.name}</td>
-                                <td>{category.name}</td>
-                                <td>{category.name}</td>
+                        {products.map((product) => (
+                            <tr key={product.id}>
+                                <td>{product.id}</td>
+                                <td>{product.name}</td>
+                                <td>{product.categoryId}</td>
+                                <td>{`R$ ${product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}</td>
                                 <td><button>Editar</button></td>
-                                <td><button type='submit' className='button-red' onClick={(e) => hadleDelete(e, category.id)} >Deletar</button></td>
+                                <td><button type='submit' className='button-red' onClick={(e) => hadleDelete(e, product.id)} >Deletar</button></td>
                             </tr>
                         ))}
                     </tbody>
