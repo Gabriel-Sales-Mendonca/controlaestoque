@@ -7,6 +7,7 @@ import Register from '../pages/Register'
 import Login from '../pages/Login'
 import Products from '../pages/Products'
 import Categories from '../pages/Categories'
+import Stock from '../pages/Stock'
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: 'categories',
                 element: <Categories />
+            },
+            {
+                path: 'stock',
+                element: <Stock />
             }
         ]
     },

@@ -130,7 +130,7 @@ export default function Categories() {
                 <Table>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>COD.</th>
                             <th>NOME</th>
                             <th>ATUALIZAR</th>
                             <th>DELETAR</th>

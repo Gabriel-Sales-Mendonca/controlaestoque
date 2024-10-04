@@ -125,7 +125,7 @@ export default function Products() {
                         <label htmlFor='name'>NOME: </label>
                         <input type='text' id='name' name='name' onChange={(e) => {setName(e.target.value)}} />
 
-                        <label htmlFor='id'>ID DA CATEGORIA: </label>
+                        <label htmlFor='id'>COD. DA CATEGORIA: </label>
                         <input type='number' id='id' name='id' onChange={(e) => {setCategoryId(e.target.value)}} />
 
                         <label htmlFor='id'>PREÇO: </label>
@@ -141,9 +141,9 @@ export default function Products() {
                 <Table>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>COD.</th>
                             <th>NOME</th>
-                            <th>ID DA CATEGORIA</th>
+                            <th>CATEGORIA</th>
                             <th>PREÇO</th>
                             <th>ATUALIZAR</th>
                             <th>DELETAR</th>
