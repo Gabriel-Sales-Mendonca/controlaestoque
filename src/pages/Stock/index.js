@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { toast } from 'react-toastify'
+import { FaEdit, FaCheckCircle, FaTimesCircle } from 'react-icons/fa'
 
 import axios from '../../services/axios'
 import { Container, Table } from './styled'
@@ -7,16 +7,34 @@ import { Container, Table } from './styled'
 
 export default function Stock() {
     const [products, setProducts] = useState([])
+    const [productClicked, setProductClicked] = useState(null)
+    const [novoValor, setNovoValor] = useState(0)
 
     useEffect(() => {
         async function getData() {
             const response = await axios.get('/products')
-            console.log(response.data)
+
             setProducts(response.data)
         }
 
         getData()
     }, [])
+
+    function handleEditClick(productId) {
+        setProductClicked(productId)
+    }
+
+    function handleCancelEdit() {
+        setProductClicked(null)
+    }
+
+    function valor(value) {
+        return value
+    }
+
+    function newValue(amount) {
+        console.log(amount)
+    }
 
     return (
         <Container>
@@ -38,12 +56,31 @@ export default function Stock() {
                     <tbody>
                         {products.map((product) => (
                             <tr key={product.id}>
+
                                 <td>{product.id}</td>
                                 <td>{product.name}</td>
                                 <td>{product.categoryId}</td>
+
                                 <td>{`R$ ${product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}</td>
+
                                 <td>{`R$ ${product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}</td>
-                                <td>{product.amount}</td>
+
+                                <td className='amount'>
+                                    <input 
+                                        value={valor(product.amount)}
+                                        disabled={productClicked !== product.id}
+                                        onChange={newValue(product.amount)}
+                                    />
+
+                                    {productClicked === product.id ? (
+                                        <>
+                                            <FaCheckCircle onClick={() => handleEditClick(product.id)} />
+                                            <FaTimesCircle onClick={() => handleCancelEdit()} />
+                                        </>
+                                    ) : (
+                                        <FaEdit onClick={(e) => handleEditClick(product.id)} />
+                                    )}
+                                </td>
                                 <td>{product.amountUpdatedAt}</td>
                             </tr>
                         ))}
