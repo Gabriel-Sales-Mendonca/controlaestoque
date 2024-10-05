@@ -9,14 +9,36 @@ import { Container, Table } from './styled'
 export default function Stock() {
     const [products, setProducts] = useState([])
     const [productClicked, setProductClicked] = useState(null)
-    const [oldQuantity, setOldQuatity] = useState([])
+    const [oldQuantity, setOldQuantity] = useState([])
     const [updatedStock, setUpdatedStock] = useState(0)
 
     useEffect(() => {
         async function getData() {
             const response = await axios.get('/products')
 
-            setProducts(response.data)
+            function formatDate(isoDate) {
+                const date = new Date(isoDate)
+                const day = String(date.getDate()).padStart(2, '0')
+                const month = String(date.getMonth() + 1).padStart(2, '0')
+                const year = date.getFullYear()
+                const hours = String(date.getHours() + 3).padStart(2, '0')
+                const minutes = String(date.getMinutes()).padStart(2, '0')
+                const seconds = String(date.getSeconds()).padStart(2, '0')
+            
+                return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
+            }
+
+            let listOfProducts = []
+
+            for(let product of response.data) {
+
+                if(product.amountUpdatedAt) {
+                    product.amountUpdatedAt = formatDate(product.amountUpdatedAt)
+                }
+                listOfProducts.push(product)
+            }
+
+            setProducts(listOfProducts)
         }
 
         getData()
@@ -24,7 +46,7 @@ export default function Stock() {
 
     function handleEdit(productId) {
         const copyProducts = products.map(product => ({ ...product }))       
-        setOldQuatity(copyProducts)
+        setOldQuantity(copyProducts)
 
         setProductClicked(productId)
     }
