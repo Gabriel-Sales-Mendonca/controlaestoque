@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { FaEdit, FaCheckCircle, FaTimesCircle } from 'react-icons/fa'
+import { toast } from 'react-toastify'
 
 import axios from '../../services/axios'
 import { Container, Table } from './styled'
@@ -9,6 +10,7 @@ export default function Stock() {
     const [products, setProducts] = useState([])
     const [productClicked, setProductClicked] = useState(null)
     const [oldQuantity, setOldQuatity] = useState([])
+    const [updatedStock, setUpdatedStock] = useState(0)
 
     useEffect(() => {
         async function getData() {
@@ -18,7 +20,7 @@ export default function Stock() {
         }
 
         getData()
-    }, [])
+    }, [updatedStock])
 
     function handleEdit(productId) {
         const copyProducts = products.map(product => ({ ...product }))       
@@ -42,6 +44,29 @@ export default function Stock() {
         })
 
         setProducts(updateProducts)
+    }
+
+    async function handleSubmit(productId) {
+        for(let product of products) {
+            if(product.id === productId) {
+                try {
+                    const response = await axios.put('/products/amount', {
+                        id: Number(productId),
+                        amount: Number(product.amount)
+                    })
+    
+                    console.log(response)
+                    toast.success(`Produto ${response.data.name} atualizado!`)
+
+                } catch(e) {
+                    toast.error('Houve um erro')
+                    console.log('Houve um erro ' + e)
+                }
+            }
+        }
+
+        setUpdatedStock(prev => prev + 1)
+        setProductClicked(null)
     }
 
     return (
@@ -82,7 +107,7 @@ export default function Stock() {
 
                                     {productClicked === product.id ? (
                                         <>
-                                            <FaCheckCircle onClick={() => handleEdit(product.id)} />
+                                            <FaCheckCircle onClick={() => handleSubmit(product.id)} />
                                             <FaTimesCircle onClick={() => handleCancelEdit()} />
                                         </>
                                     ) : (
