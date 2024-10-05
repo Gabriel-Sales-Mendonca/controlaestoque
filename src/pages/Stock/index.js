@@ -8,6 +8,7 @@ import { Container, Table } from './styled'
 export default function Stock() {
     const [products, setProducts] = useState([])
     const [productClicked, setProductClicked] = useState(null)
+    const [oldQuantity, setOldQuatity] = useState([])
 
     useEffect(() => {
         async function getData() {
@@ -19,27 +20,27 @@ export default function Stock() {
         getData()
     }, [])
 
-    function handleEditClick(productId) {
+    function handleEdit(productId) {
+        const copyProducts = products.map(product => ({ ...product }))       
+        setOldQuatity(copyProducts)
+
         setProductClicked(productId)
     }
 
     function handleCancelEdit() {
+        setProducts(oldQuantity)
+
         setProductClicked(null)
     }
 
     function handleChangeAmount(productId, amount) {
-        console.log(productId, amount)
-
         const updateProducts = products.map((product) => {
             if(product.id === productId) {
                 product.amount = amount
             }
-            console.log(product)
             return product
         })
 
-        console.log(products)
-        console.log(updateProducts)
         setProducts(updateProducts)
     }
 
@@ -81,11 +82,11 @@ export default function Stock() {
 
                                     {productClicked === product.id ? (
                                         <>
-                                            <FaCheckCircle onClick={() => handleEditClick(product.id)} />
+                                            <FaCheckCircle onClick={() => handleEdit(product.id)} />
                                             <FaTimesCircle onClick={() => handleCancelEdit()} />
                                         </>
                                     ) : (
-                                        <FaEdit onClick={(e) => handleEditClick(product.id)} />
+                                        <FaEdit onClick={(e) => handleEdit(product.id)} />
                                     )}
                                 </td>
                                 <td>{product.amountUpdatedAt}</td>
