@@ -122,19 +122,22 @@ export default function Stock() {
 
                                 <td className='amount'>
                                     <input 
+                                        type='number'
                                         value={product.amount}
                                         disabled={productClicked !== product.id}
                                         onChange={(e) => handleChangeAmount(product.id, e.target.value)}
                                     />
 
-                                    {productClicked === product.id ? (
-                                        <>
-                                            <FaCheckCircle onClick={() => handleSubmit(product.id)} />
-                                            <FaTimesCircle onClick={() => handleCancelEdit()} />
-                                        </>
-                                    ) : (
-                                        <FaEdit onClick={(e) => handleEdit(product.id)} />
-                                    )}
+                                    <div className='editAmount'>
+                                        {productClicked === product.id ? (
+                                            <>
+                                                <FaCheckCircle className='edit check' size={25} onClick={() => handleSubmit(product.id)} />
+                                                <FaTimesCircle className='edit cancel' size={25} onClick={() => handleCancelEdit()} />
+                                            </>
+                                        ) : (
+                                            <FaEdit className='edit' size={25} onClick={(e) => handleEdit(product.id)} />
+                                        )}
+                                    </div>
                                 </td>
                                 <td>{product.amountUpdatedAt}</td>
                             </tr>
