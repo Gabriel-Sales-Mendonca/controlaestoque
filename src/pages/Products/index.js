@@ -16,7 +16,6 @@ export default function Products() {
     useEffect(() => {
         async function getData() {
             const response = await axios.get('/products')
-            console.log(response.data)
             setProducts(response.data)
         }
 

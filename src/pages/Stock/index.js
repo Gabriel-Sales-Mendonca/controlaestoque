@@ -8,7 +8,6 @@ import { Container, Table } from './styled'
 export default function Stock() {
     const [products, setProducts] = useState([])
     const [productClicked, setProductClicked] = useState(null)
-    const [novoValor, setNovoValor] = useState(0)
 
     useEffect(() => {
         async function getData() {
@@ -28,12 +27,20 @@ export default function Stock() {
         setProductClicked(null)
     }
 
-    function valor(value) {
-        return value
-    }
+    function handleChangeAmount(productId, amount) {
+        console.log(productId, amount)
 
-    function newValue(amount) {
-        console.log(amount)
+        const updateProducts = products.map((product) => {
+            if(product.id === productId) {
+                product.amount = amount
+            }
+            console.log(product)
+            return product
+        })
+
+        console.log(products)
+        console.log(updateProducts)
+        setProducts(updateProducts)
     }
 
     return (
@@ -67,9 +74,9 @@ export default function Stock() {
 
                                 <td className='amount'>
                                     <input 
-                                        value={valor(product.amount)}
+                                        value={product.amount}
                                         disabled={productClicked !== product.id}
-                                        onChange={newValue(product.amount)}
+                                        onChange={(e) => handleChangeAmount(product.id, e.target.value)}
                                     />
 
                                     {productClicked === product.id ? (
