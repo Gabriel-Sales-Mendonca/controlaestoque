@@ -5,6 +5,7 @@ import Menu from '../components/Menu'
 import Error from '../pages/Error'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
+import Home from '../pages/Home'
 import Products from '../pages/Products'
 import Categories from '../pages/Categories'
 import Stock from '../pages/Stock'
@@ -20,8 +21,14 @@ const router = createBrowserRouter([
         errorElement: <Error />,
         children: [
             {
+                path: 'home',
+                element: <Home />
+
+            },
+            {
                 path: '/',
                 element: <Products />
+                
             },
             {
                 path: 'categories',

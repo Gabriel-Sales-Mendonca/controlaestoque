@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 import axios from '../../services/axios'
 import { Container, FormNewCategory, Table } from './styled'
@@ -11,11 +12,21 @@ export default function Categories() {
     const [id, setId] = useState(0)
     const [name, setName] = useState('')
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         async function getData() {
-            const response = await axios.get('/categories')
+            try {
+                const response = await axios.get('/categories')
+                setCategories(response.data)
+            } catch(e) {
+                if(e.response.status === 401) {
+                    console.log('NÃO LOGADO')
+                    navigate('/home')
+                }
 
-            setCategories(response.data)
+                console.log('Erro: ' + e)
+            }
         }
 
         getData()

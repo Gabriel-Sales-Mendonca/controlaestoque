@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 import axios from '../../services/axios'
 import { Container, FormNewCategory, Table } from './styled'
@@ -13,10 +14,21 @@ export default function Products() {
     const [categoryId, setCategoryId] = useState(0)
     const [price, setPrice] = useState(0)
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         async function getData() {
-            const response = await axios.get('/products')
-            setProducts(response.data)
+            try {
+                const response = await axios.get('/products')
+                setProducts(response.data)
+            } catch(e) {
+                if(e.response.status === 401) {
+                    console.log('NÃO LOGADO')
+                    navigate('/home')
+                }
+
+                console.log('Erro: ' + e)
+            }
         }
 
         getData()
