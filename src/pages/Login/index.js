@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import { isEmail } from 'validator'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
 
 import { Form } from './styled'
 import axios from '../../services/axios'
 
 export default function Register() {
-    const navigate = useNavigate()
-
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
