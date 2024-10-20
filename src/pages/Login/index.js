@@ -37,7 +37,7 @@ export default function Register() {
 
             localStorage.setItem('userToken', user.data.token)
 
-            navigate('/')
+            window.location.href = '/'
             toast.success('Você Logou com SUCESSO!')
         } catch(e) {
             console.log('Houve um erro ' + e)
