@@ -54,7 +54,7 @@ export default function Stock() {
         }
 
         getData()
-    }, [updatedStock])
+    }, [updatedStock, navigate])
 
     function handleEdit(productId) {
         const copyProducts = products.map(product => ({ ...product }))       

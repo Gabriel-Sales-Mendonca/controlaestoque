@@ -30,7 +30,7 @@ export default function Categories() {
         }
 
         getData()
-    }, [updateCategories])
+    }, [updateCategories, navigate])
 
     function addCategory(e) {
         e.preventDefault()

@@ -32,7 +32,7 @@ export default function Products() {
         }
 
         getData()
-    }, [updateProducts])
+    }, [updateProducts, navigate])
 
     function addProduct(e) {
         e.preventDefault()
