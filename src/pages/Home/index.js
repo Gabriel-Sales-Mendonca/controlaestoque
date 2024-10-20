@@ -8,6 +8,7 @@ export default function Home() {
             <div className='title'>
                 <h1>Seja bem vindo ao seu controlador de estoque!</h1>
                 <h2>Faça Login ou Cadastre-se</h2>
+                <h2>Se você acabou de se cadastrar faça Login</h2>
             </div>
 
             <div className='buttons'>

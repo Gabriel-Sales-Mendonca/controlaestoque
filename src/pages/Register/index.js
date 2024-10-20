@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { isEmail } from 'validator'
-import { useNavigate } from 'react-router-dom'
 
 import { Form } from './styled'
 import axios from '../../services/axios'
 
 export default function Register() {
-    const navigate = useNavigate()
-
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -50,7 +47,7 @@ export default function Register() {
                 return
             }
 
-            navigate('/')
+            window.location.href = '/'
 
             toast.success('Cadastro realizado com SUCESSO')
         } catch(e) {
